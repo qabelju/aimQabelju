@@ -41,6 +41,13 @@ public void Enginee()
 
     bgList.add(bg2);
 
+
+    ItemList bg3=new  ItemList();
+    bg3.Value=3;
+    bg3.Text="هزینه سوم";
+
+    bgList.add(bg3);
+
     Spinner spinner=(Spinner)findViewById(R.id.spinnerYear);
 
     ArrayAdapter<ItemList> dataAdapter=
