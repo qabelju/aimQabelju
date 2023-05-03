@@ -23,7 +23,7 @@
 
             />
         <Spinner
-            android:id="@+id/spinner"
+            android:id="@+id/spinnerYear"
             android:layout_width="50dp"
             android:layout_height="50dp"
 
