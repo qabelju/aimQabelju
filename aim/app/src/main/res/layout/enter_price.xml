@@ -32,7 +32,7 @@
             android:layout_column="0"
 
             android:layout_margin="2dp"
-            android:background="#FF5733"
+            android:background="#FFFFFF"
             />
 
 
