@@ -48,7 +48,7 @@ public void Enginee()
 
     bgList.add(bg3);
 
-    Spinner spinner=(Spinner)findViewById(R.id.spinnerYear);
+    Spinner spinner=new Spinner(this);
 
     ArrayAdapter<ItemList> dataAdapter=
             new ArrayAdapter<ItemList> (this,android.R.layout.simple_spinner_dropdown_item,bgList);
@@ -69,7 +69,7 @@ public void Enginee()
     public void onclick_EnterPrice(View view)
     {
         setContentView(R.layout.enter_price);
-        Enginee();
+        //Enginee();
     }
 
     public void onclick_ReportList(View view)
