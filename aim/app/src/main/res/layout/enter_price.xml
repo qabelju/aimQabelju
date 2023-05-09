@@ -1,22 +1,26 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="200dp"
+    android:layout_height="700dp"
     android:orientation="vertical"
     android:text="top">
 
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="50dp"/>
 
 <LinearLayout
     android:layout_width="match_parent"
     android:layout_height="50dp"
     android:orientation="horizontal"
-    android:layout_gravity="center_verticalda"
+    android:gravity="center"
     >
 
 
     <TextView
 
-        android:text="سال"
+        android:text="روز"
         android:layout_width="0dp"
         android:layout_weight="33"
         android:layout_height="50dp"
@@ -41,7 +45,7 @@
 
     <TextView
 
-        android:text="روز"
+        android:text="سال"
         android:layout_width="0dp"
 
         android:layout_weight="33"
@@ -62,7 +66,7 @@
 
         <EditText
             android:layout_width="0dp"
-            android:hint="سال"
+            android:hint="روز"
 
             android:layout_weight="33"
             android:layout_height="50dp"
@@ -87,7 +91,7 @@
 
         <EditText
 
-            android:hint="روز"
+            android:hint="سال"
             android:layout_width="0dp"
             android:layout_weight="33"
             android:layout_height="50dp"
@@ -99,5 +103,54 @@
 
 
     </LinearLayout>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="20dp"
+        android:text="توضیحات"/>
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="100dp"/>
+
+
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:orientation="horizontal">
+
+        >
+
+        <TextView
+            android:layout_width="100dp"
+            android:layout_height="match_parent"
+            android:text="گروه مالی"
+            android:gravity="center"
+
+
+            />
+
+
+        <Spinner
+            android:id="@+id/planets_spinner"
+            android:layout_width="250dp"
+            android:layout_height="match_parent"
+
+            />
+
+
+
+    </LinearLayout>
+
+    <Button
+        android:layout_width="150dp"
+        android:layout_height="50dp"
+        android:text="ارسال اطلاعات"
+        android:gravity="center"
+        android:layout_gravity="center"
+
+        />
 
 </LinearLayout>
