@@ -3,6 +3,7 @@ package com.example.aim;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -10,9 +11,31 @@ import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.android.volley.Request;
+import com.loopj.android.http.JsonHttpResponseHandler;
+import com.loopj.android.http.RequestParams;
 
+import org.chromium.net.CronetEngine;
+import org.chromium.net.CronetException;
+import org.chromium.net.UrlRequest;
+import org.chromium.net.UrlResponseInfo;
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.io.IOException;
+import java.net.MalformedURLException;
+import java.net.ProtocolException;
+import java.net.URL;
+import java.nio.ByteBuffer;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.Executor;
+import java.util.concurrent.Executors;
+
+import javax.net.ssl.HttpsURLConnection;
+
+import retrofit2.http.Header;
+
 
 public class MainActivity extends AppCompatActivity {
 
@@ -21,9 +44,31 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.dashboard);
 
-        api_Interface.Webservice(this,"http://localhost:5018/api/Bank/GetListGroup", Request.Method.GET,null);
+        //api_Interface.Webservice(this,"http://localhost:5018/api/Bank/GetListGroup", Request.Method.GET,null);
 
 
+        RequestParams rp = new RequestParams();
+        rp.add("Id", "0");
+        rp.add("Price", "111");
+        rp.add("Title", "1111");
+        rp.add("InputOutput", "0");
+        rp.add("_Group", "1");
+        rp.add("DatePersian_String", "1401/12/30");
+
+        HttpUtils.post("http://localhost:5018/api/Bank/NewDec", rp, new JsonHttpResponseHandler() {
+            @Override
+            public void onSuccess(int statusCode, Header[] headers, JSONObject response) throws JSONException {
+                // If the response is JSONObject instead of expected JSONArray
+                Log.d("asd", "---------------- this is response : " + response);
+                JSONObject serverResp = new JSONObject(response.toString());
+            }
+
+            @Override
+            public void onSuccess(int statusCode, Header[] headers, JSONArray timeline) {
+                // Pull out the first event on the public timeline
+
+            }
+        });
 
     }
 
@@ -83,8 +128,6 @@ public void Enginee()
     {
         setContentView(R.layout.enter_price);
     }
-
-
 
 
 
