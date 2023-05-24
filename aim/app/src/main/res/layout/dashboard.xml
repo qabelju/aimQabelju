@@ -24,4 +24,10 @@
         android:text="گزارش نقدینگی"
         android:onClick="onclick_ReportList"
         />
+
+    <TextView
+        android:id="@+id/textView222"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="TextView" />
 </LinearLayout>

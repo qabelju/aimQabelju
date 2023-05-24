@@ -8,6 +8,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.android.volley.Request;
@@ -44,91 +45,116 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.dashboard);
 
-        //api_Interface.Webservice(this,"http://localhost:5018/api/Bank/GetListGroup", Request.Method.GET,null);
+
+        //CronetEngine.Builder myBuilder = new CronetEngine.Builder(this);
+        //CronetEngine cronetEngine = myBuilder.build();
+
+        //Executor executor = Executors.newSingleThreadExecutor();
+
+        //UrlRequest.Builder requestBuilder = cronetEngine.newUrlRequestBuilder(
+               // "http://192.168.1.242:1363/api/Bank/GetListGroup", new MyUrlRequestCallback(), executor);
+
+        //UrlRequest request = requestBuilder.build();
+        //request.start();
 
 
-        RequestParams rp = new RequestParams();
-        rp.add("Id", "0");
-        rp.add("Price", "111");
-        rp.add("Title", "1111");
-        rp.add("InputOutput", "0");
-        rp.add("_Group", "1");
-        rp.add("DatePersian_String", "1401/12/30");
+        JSONObject json = new JSONObject();
+        try{
+            json.put("UserName","M");
+            json.put("PassWord","1");
 
-        HttpUtils.post("http://localhost:5018/api/Bank/NewDec", rp, new JsonHttpResponseHandler() {
-            @Override
-            public void onSuccess(int statusCode, Header[] headers, JSONObject response) throws JSONException {
+            json.put("Id", "0");
+            json.put("Price", "111");
+            json.put("Title", "1111");
+            json.put("InputOutput", "0");
+            json.put("_Group", "1");
+            json.put("DatePersian_String", "1401/12/30");
+
+        }
+        catch (JSONException je)
+        {
+
+        }
+
+
+
+         api_Interface.ResultWebservice resultWebservice =
+         api_Interface.Webservice(this, "http://192.168.1.242:1363/api/Bank/NewDec", Request.Method.POST, json);
+
+        ((TextView)findViewById(R.id.textView222)).setText(resultWebservice.ErrorMessage.toString());
+
+
+
+        //RequestParams rp = new RequestParams();
+        //rp.add("Id", "0");
+        //rp.add("Price", "111");
+        //rp.add("Title", "1111");
+        //rp.add("InputOutput", "0");
+        //rp.add("_Group", "1");
+        //rp.add("DatePersian_String", "1401/12/30");
+
+        //HttpUtils.post("http://192.168.1.242:1363/api/Bank/NewDec", rp, new JsonHttpResponseHandler() {
+            //@Override
+            //public void onSuccess(int statusCode, Header[] headers, JSONObject response) throws JSONException {
                 // If the response is JSONObject instead of expected JSONArray
-                Log.d("asd", "---------------- this is response : " + response);
-                JSONObject serverResp = new JSONObject(response.toString());
-            }
+                // Log.d("asd", "---------------- this is response : " + response);
+                //Toast.makeText(MainActivity.this, "---------------- this is response : " + response, Toast.LENGTH_SHORT).show();
+                //JSONObject serverResp = new JSONObject(response.toString());
+            //}
 
-            @Override
-            public void onSuccess(int statusCode, Header[] headers, JSONArray timeline) {
-                // Pull out the first event on the public timeline
+            //  @Override
+            // public void onSuccess(int statusCode, Header[] headers, JSONArray timeline) {
+            // Pull out the first event on the public timeline
 
-            }
-        });
+            //}
+        //});
 
     }
 
-public void Enginee()
-{
-    List<ItemList> bgList=new ArrayList<ItemList>();
+    public void Enginee() {
+        List<ItemList> bgList = new ArrayList<ItemList>();
 
-    ItemList bg=new ItemList();
-    bg.Value=1;
-    bg.Text="هزینه اول";
+        ItemList bg = new ItemList();
+        bg.Value = 1;
+        bg.Text = "هزینه اول";
 
-    bgList.add(bg);
+        bgList.add(bg);
 
-    ItemList bg2=new  ItemList();
-    bg2.Value=2;
-    bg2.Text="هزینه دوم";
+        ItemList bg2 = new ItemList();
+        bg2.Value = 2;
+        bg2.Text = "هزینه دوم";
 
-    bgList.add(bg2);
+        bgList.add(bg2);
 
 
-    ItemList bg3=new  ItemList();
-    bg3.Value=3;
-    bg3.Text="هزینه سوم";
+        ItemList bg3 = new ItemList();
+        bg3.Value = 3;
+        bg3.Text = "هزینه سوم";
 
-    bgList.add(bg3);
+        bgList.add(bg3);
 
-    Spinner spinner=new Spinner(this);
+        Spinner spinner = new Spinner(this);
 
-    ArrayAdapter<ItemList> dataAdapter=
-            new ArrayAdapter<ItemList> (this,android.R.layout.simple_spinner_dropdown_item,bgList);
-    dataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-    spinner.setAdapter(dataAdapter);
-    spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener(){
-        @Override
-        public void onItemSelected(AdapterView<?>adapterView,View view,int i,long l){
-            Toast.makeText(MainActivity.this,spinner.getSelectedItem().toString(),Toast.LENGTH_SHORT).show();
-        }
-        @Override
-        public void onNothingSelected(AdapterView<?>adapterView){
-            Toast.makeText(MainActivity.this,"Hello",Toast.LENGTH_SHORT).show();
-        }
-    });
-}
+        ArrayAdapter<ItemList> dataAdapter =
+                new ArrayAdapter<ItemList>(this, android.R.layout.simple_spinner_dropdown_item, bgList);
+        dataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spinner.setAdapter(dataAdapter);
+        spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                Toast.makeText(MainActivity.this, spinner.getSelectedItem().toString(), Toast.LENGTH_SHORT).show();
+            }
 
-    public void onclick_EnterPrice(View view)
-    {
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+                Toast.makeText(MainActivity.this, "Hello", Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
+
+    public void onclick_EnterPrice(View view) {
         setContentView(R.layout.enter_price);
         //Enginee();
     }
-
-    public void onclick_ReportList(View view)
-    {
-        setContentView(R.layout.enter_price);
-    }
-
-    public void onclick(View view)
-    {
-        setContentView(R.layout.enter_price);
-    }
-
-
 
 }
