@@ -60,15 +60,13 @@ public class MainActivity extends AppCompatActivity {
 
         JSONObject json = new JSONObject();
         try{
-            json.put("UserName","M");
-            json.put("PassWord","1");
 
             json.put("Id", "0");
-            json.put("Price", "111");
-            json.put("Title", "1111");
+            json.put("Price", "2222");
+            json.put("Title", "2222");
             json.put("InputOutput", "0");
             json.put("_Group", "1");
-            json.put("DatePersian_String", "1401/12/30");
+            json.put("DatePersian_String", "1401/12/31");
 
         }
         catch (JSONException je)
@@ -79,9 +77,9 @@ public class MainActivity extends AppCompatActivity {
 
 
          api_Interface.ResultWebservice resultWebservice =
-         api_Interface.Webservice(this, "http://192.168.1.242:1363/api/Bank/NewDec", Request.Method.POST, json);
+         api_Interface.Webservice(this, "http://192.168.1.242:1363/api/Bank/GetListGroup", Request.Method.GET, json);
 
-        ((TextView)findViewById(R.id.textView222)).setText(resultWebservice.ErrorMessage.toString());
+       ((TextView)findViewById(R.id.textView222)).setText(resultWebservice.ErrorMessage.toString());
 
 
 

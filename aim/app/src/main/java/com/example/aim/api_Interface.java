@@ -10,14 +10,19 @@ import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.google.gson.Gson;
 
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+
+
+
+
 
 public class api_Interface
 {
 
 
-    public class ResultWebservice
+    public static class ResultWebservice
     {
         public int ErrorCode ;
         public String ErrorMessage;
@@ -38,10 +43,11 @@ public class api_Interface
 
 
 
-        final String[] StringResult = {""};
-        final JSONObject[] jsonResult = {new JSONObject()};
+        final ResultWebservice resultWebservice = new ResultWebservice();
+        resultWebservice.ErrorCode = 20;
+        resultWebservice.ErrorMessage = "قبل از اجرا";
+        resultWebservice.Result_Json="هیچی";
 
-        final ResultWebservice resultWebservice = null;
 
         try {
 
@@ -63,22 +69,15 @@ public class api_Interface
 
 
 
-                JsonObjectRequest request = new JsonObjectRequest(method, url, json, new Response.Listener<JSONObject>() {
+                JsonObjectRequest request = new JsonObjectRequest(Request.Method.POST, url, json, new Response.Listener<JSONObject>() {
 
 
                     @Override
-                    public void onResponse(JSONObject response) {
+                    public void onResponse(JSONObject  response) {
 
-                        try {
-                            resultWebservice.ErrorCode = 0;
-                            resultWebservice.ErrorMessage = "اجرای وب سرویس با موفقیت انجام شد";
-                           resultWebservice.Result_Json =  new Gson().toJson(response );
-
-                        } catch (Exception ex) {
-                            resultWebservice.ErrorCode = 1;
-                            resultWebservice.ExceptionMessage = ex.getMessage();
-                            resultWebservice.ErrorMessage = "خطا در پاسخ دریافتی از وب سرویس";
-                        }
+                        resultWebservice.ErrorCode = 0;
+                        resultWebservice.ErrorMessage = "اجرای وب سرویس با موفقیت انجام شد";
+                        resultWebservice.Result_Json =  new Gson().toJson(response );
 
 
                     }
