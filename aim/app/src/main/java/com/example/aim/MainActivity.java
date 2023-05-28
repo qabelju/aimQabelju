@@ -67,11 +67,11 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.dashboard);
 
 
-        request = retrofit_api_Client.getRetrofitInstance("http://192.168.1.242:1363/api/Bank/").create(retrofit_api_interface.class);
+        request = retrofit_api_Client.getRetrofitInstance("http://192.168.1.242:1363/api/Bank/GetListGroup").create(retrofit_api_interface.class);
 
-        request.GetGroupList().enqueue(new Callback<JSONArray>() {
+        request.GetGroupList().enqueue(new Callback<List<Object>>() {
             @Override
-            public void onResponse(Call<JSONArray> call, Response<JSONArray> response)
+            public void onResponse(Call<List<Object>> call, Response<List<Object>> response)
             {
                 //list = response.body();
                 Toast.makeText(MainActivity.this, response.body().toString(), Toast.LENGTH_SHORT).show();
@@ -81,7 +81,7 @@ public class MainActivity extends AppCompatActivity {
             }
 
             @Override
-            public void onFailure(Call<JSONArray> call, Throwable t)
+            public void onFailure(Call<List<Object>> call, Throwable t)
             {
 
                 Log.e("ooooooooooooooo",t.getMessage());
