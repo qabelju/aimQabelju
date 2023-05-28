@@ -3,7 +3,9 @@ package com.example.aim;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+
 import android.util.Log;
+
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -12,6 +14,9 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.android.volley.Request;
+
+
+
 import com.loopj.android.http.JsonHttpResponseHandler;
 import com.loopj.android.http.RequestParams;
 
@@ -20,25 +25,41 @@ import org.chromium.net.CronetException;
 import org.chromium.net.UrlRequest;
 import org.chromium.net.UrlResponseInfo;
 import org.json.JSONArray;
+
+
+
 import org.json.JSONException;
 import org.json.JSONObject;
+
 
 import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.ProtocolException;
 import java.net.URL;
 import java.nio.ByteBuffer;
+
+
+
 import java.util.ArrayList;
 import java.util.List;
+
+
+
 import java.util.concurrent.Executor;
 import java.util.concurrent.Executors;
 
 import javax.net.ssl.HttpsURLConnection;
 
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 import retrofit2.http.Header;
 
 
 public class MainActivity extends AppCompatActivity {
+
+ retrofit_api_interface request;
+    JSONArray list;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,6 +67,29 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.dashboard);
 
 
+        request = retrofit_api_Client.getRetrofitInstance("http://192.168.1.242:1363/api/Bank/").create(retrofit_api_interface.class);
+
+        request.GetGroupList().enqueue(new Callback<JSONArray>() {
+            @Override
+            public void onResponse(Call<JSONArray> call, Response<JSONArray> response)
+            {
+                //list = response.body();
+                Toast.makeText(MainActivity.this, response.body().toString(), Toast.LENGTH_SHORT).show();
+
+                ((TextView)findViewById(R.id.textView222)).setText(response.body().toString());
+
+            }
+
+            @Override
+            public void onFailure(Call<JSONArray> call, Throwable t)
+            {
+
+                Log.e("ooooooooooooooo",t.getMessage());
+                Toast.makeText(MainActivity.this, t.getMessage(), Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        return;
         //CronetEngine.Builder myBuilder = new CronetEngine.Builder(this);
         //CronetEngine cronetEngine = myBuilder.build();
 
@@ -58,28 +102,28 @@ public class MainActivity extends AppCompatActivity {
         //request.start();
 
 
-        JSONObject json = new JSONObject();
-        try{
+        //JSONObject json = new JSONObject();
+        //try{
 
-            json.put("Id", "0");
-            json.put("Price", "2222");
-            json.put("Title", "2222");
-            json.put("InputOutput", "0");
-            json.put("_Group", "1");
-            json.put("DatePersian_String", "1401/12/31");
+            //json.put("Id", "0");
+            //json.put("Price", "2222");
+            //json.put("Title", "2222");
+            //json.put("InputOutput", "0");
+            //json.put("_Group", "1");
+            //json.put("DatePersian_String", "1401/12/31");
 
-        }
-        catch (JSONException je)
-        {
+        //}
+        //catch (JSONException je)
+        //{
 
-        }
+       // }
 
 
 
-         api_Interface.ResultWebservice resultWebservice =
-         api_Interface.Webservice(this, "http://192.168.1.242:1363/api/Bank/GetListGroup", Request.Method.GET, json);
+         //api_Interface.ResultWebservice resultWebservice =
+        // api_Interface.Webservice(this, "http://192.168.1.242:1363/api/Bank/GetListGroup", Request.Method.GET, json);
 
-       ((TextView)findViewById(R.id.textView222)).setText(resultWebservice.ErrorMessage.toString());
+
 
 
 
