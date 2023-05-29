@@ -58,37 +58,17 @@ import retrofit2.http.Header;
 
 public class MainActivity extends AppCompatActivity {
 
- retrofit_api_interface request;
-    JSONArray list;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.dashboard);
 
+        String hhh= Webservice_Retrofit.CallGet(this);
 
-        request = retrofit_api_Client.getRetrofitInstance("http://192.168.1.242:1363/api/Bank/GetListGroup").create(retrofit_api_interface.class);
 
-        request.GetGroupList().enqueue(new Callback<List<Object>>() {
-            @Override
-            public void onResponse(Call<List<Object>> call, Response<List<Object>> response)
-            {
-                //list = response.body();
-                Toast.makeText(MainActivity.this, response.body().toString(), Toast.LENGTH_SHORT).show();
-
-                ((TextView)findViewById(R.id.textView222)).setText(response.body().toString());
-
-            }
-
-            @Override
-            public void onFailure(Call<List<Object>> call, Throwable t)
-            {
-
-                Log.e("ooooooooooooooo",t.getMessage());
-                Toast.makeText(MainActivity.this, t.getMessage(), Toast.LENGTH_SHORT).show();
-            }
-        });
-
+        //Toast.makeText(this, hhh, Toast.LENGTH_SHORT).show();
+        ((TextView)findViewById(R.id.textView222)).setText(hhh);
         return;
         //CronetEngine.Builder myBuilder = new CronetEngine.Builder(this);
         //CronetEngine cronetEngine = myBuilder.build();
@@ -102,29 +82,26 @@ public class MainActivity extends AppCompatActivity {
         //request.start();
 
 
-        //JSONObject json = new JSONObject();
-        //try{
 
-            //json.put("Id", "0");
-            //json.put("Price", "2222");
-            //json.put("Title", "2222");
-            //json.put("InputOutput", "0");
-            //json.put("_Group", "1");
-            //json.put("DatePersian_String", "1401/12/31");
+       // try{
+           // JSONObject json = new JSONObject();
+           // json.put("Id", "0");
+           // json.put("Price", "2222");
+           // json.put("Title", "2222");
+           /// json.put("InputOutput", "0");
+           /// json.put("_Group", "1");
+           /// json.put("DatePersian_String", "1401/12/31");
 
-        //}
-        //catch (JSONException je)
-        //{
+       /// }
+       /// catch (JSONException je)
+       /// {
 
-       // }
+      /// }
 
 
 
          //api_Interface.ResultWebservice resultWebservice =
         // api_Interface.Webservice(this, "http://192.168.1.242:1363/api/Bank/GetListGroup", Request.Method.GET, json);
-
-
-
 
 
         //RequestParams rp = new RequestParams();
@@ -150,6 +127,7 @@ public class MainActivity extends AppCompatActivity {
 
             //}
         //});
+
 
     }
 
