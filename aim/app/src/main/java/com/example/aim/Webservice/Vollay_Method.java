@@ -1,13 +1,16 @@
 package com.example.aim.Webservice;
 
 
+import android.content.Context;
 import android.util.Log;
 
+import com.android.volley.NetworkResponse;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
+import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.aim.Webservice.ResultWebservice;
 import com.example.aim.Webservice.Webservice;
@@ -26,7 +29,7 @@ public class Vollay_Method
 
 
 
-    public static ResultWebservice call(Webservice.MethodHttp methodHttp, String Url, JSONObject json)
+    public static ResultWebservice call(Webservice.MethodHttp methodHttp, String Url, JSONObject json, Context context)
     {
 
         /////////////////////////////////////////////
@@ -50,7 +53,7 @@ public class Vollay_Method
             /////////////////////////////////////////////
 
 
-            //RequestQueue queue = Volley.newRequestQueue(context);
+            RequestQueue queue = Volley.newRequestQueue(context);
 
             /////////////////////////////////////////////
             ///////                              ////////
@@ -73,7 +76,7 @@ public class Vollay_Method
 
                         Webservice.resultWebservice.ErrorCode = 0;
                         Webservice.resultWebservice.ErrorMessage = "اجرای وب سرویس با موفقیت انجام شد";
-                        Webservice.resultWebservice.Result_Json =  new Gson().toJson(response );
+                        Webservice.resultWebservice.Result_Json =  response.toString();
                     }
                     catch (Exception ex)
                     {
@@ -120,10 +123,11 @@ public class Vollay_Method
 
             if (methodHttp == Webservice.MethodHttp.Get)
             {
-                Log.e("MehrdadQabelju_WebserviceLog", "Vollay Call Get  " );
+                Log.e("MehrdadQabelju_WebserviceLog", "Vollay Call Get Start  " );
                 com.android.volley.Request<org.json.JSONObject> request = new JsonObjectRequest(Request.Method.GET, Url, json, jsonObjectListener, errorListener);
 
-                Log.e("MehrdadQabelju_WebserviceLog", "Vollay Call Getgffg  " +request.toString());
+                Log.e("MehrdadQabelju_WebserviceLog", "Vollay Call Get End  ");
+                queue.add(request);
             }
 
 
@@ -132,9 +136,9 @@ public class Vollay_Method
                 Log.e("MehrdadQabelju_WebserviceLog", "Vollay Call Post  " );
                 com.android.volley.Request<org.json.JSONObject> request = new JsonObjectRequest(Request.Method.POST, Url, json, jsonObjectListener, errorListener);
 
-
+                queue.add(request);
             }
-            //queue.add(request);
+
 
 
             //================================================================================

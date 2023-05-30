@@ -1,5 +1,6 @@
 package com.example.aim.Webservice;
 
+import android.content.Context;
 import android.util.Log;
 
 import org.json.JSONObject;
@@ -21,7 +22,7 @@ public class Webservice
 
     public static ResultWebservice resultWebservice = new ResultWebservice();
 
-    public static ResultWebservice Call(VarLibrary varLibrary, MethodHttp methodHttp, String Url, JSONObject json)
+    public static ResultWebservice Call(VarLibrary varLibrary, MethodHttp methodHttp, String Url, JSONObject json, Context context)
     {
         try
         {
@@ -30,7 +31,7 @@ public class Webservice
             {
                 Log.e("MehrdadQabelju_WebserviceLog", "Call Volley Library");
 
-                return  Vollay_Method.call(methodHttp,Url,json);
+                return  Vollay_Method.call(methodHttp,Url,json,context);
 
             }
 

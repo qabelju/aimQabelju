@@ -98,7 +98,7 @@ public class MainActivity extends AppCompatActivity {
          json.put("DatePersian_String", "1401/12/31");
 
 
-         Webservice.Call(Webservice.VarLibrary.Volley, Webservice.MethodHttp.Get,"http://192.168.1.242:1363/api/Bank/GetListGroup",null);
+         Webservice.Call(Webservice.VarLibrary.Volley, Webservice.MethodHttp.Get,"http://192.168.1.242:1363/api/Bank/GetListGroup",null,this);
 
         //api_Interface.ResultWebservice resultWebservice =
         // api_Interface.Webservice(this, "http://192.168.1.242:1363/api/Bank/NewDec/", Request.Method.POST, json);
