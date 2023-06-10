@@ -65,26 +65,6 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.dashboard);
 
-        //String hhh= Webservice_Retrofit.CallGet(this);
-
-        //retrofit_Enginee();
-
-        //retrofit_Call(Method.Get, "http://192.168.1.242:1363/api/Bank/GetListGroup/", null);
-
-        //Log.e("Mehrdad Qabelju", "FFFFonResponse=" + Obj.toString());
-        //Toast.makeText(this, hhh, Toast.LENGTH_SHORT).show();
-        //((TextView)findViewById(R.id.textView222)).setText(hhh);
-        //return;
-        //CronetEngine.Builder myBuilder = new CronetEngine.Builder(this);
-        //CronetEngine cronetEngine = myBuilder.build();
-
-        //Executor executor = Executors.newSingleThreadExecutor();
-
-        //UrlRequest.Builder requestBuilder = cronetEngine.newUrlRequestBuilder(
-        // "http://192.168.1.242:1363/api/Bank/GetListGroup", new MyUrlRequestCallback(), executor);
-
-        //UrlRequest request = requestBuilder.build();
-        //request.start();
 
 
        try{
@@ -98,10 +78,8 @@ public class MainActivity extends AppCompatActivity {
          json.put("DatePersian_String", "1401/12/31");
 
 
-         Webservice.Call(Webservice.VarLibrary.Volley, Webservice.MethodHttp.Get,"http://192.168.1.242:1363/api/Bank/GetListGroup",null,this);
+       //  Webservice.Call(Webservice.VarLibrary.Volley, Webservice.MethodHttp.Get,"http://192.168.1.242:1363/api/Bank/GetListGroup",null,this);
 
-        //api_Interface.ResultWebservice resultWebservice =
-        // api_Interface.Webservice(this, "http://192.168.1.242:1363/api/Bank/NewDec/", Request.Method.POST, json);
 
        }
        catch (JSONException je)
@@ -135,50 +113,10 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-    public void Enginee() {
-        List<ItemList> bgList = new ArrayList<ItemList>();
-
-        ItemList bg = new ItemList();
-        bg.Value = 1;
-        bg.Text = "هزینه اول";
-
-        bgList.add(bg);
-
-        ItemList bg2 = new ItemList();
-        bg2.Value = 2;
-        bg2.Text = "هزینه دوم";
-
-        bgList.add(bg2);
-
-
-        ItemList bg3 = new ItemList();
-        bg3.Value = 3;
-        bg3.Text = "هزینه سوم";
-
-        bgList.add(bg3);
-
-        Spinner spinner = new Spinner(this);
-
-        ArrayAdapter<ItemList> dataAdapter =
-                new ArrayAdapter<ItemList>(this, android.R.layout.simple_spinner_dropdown_item, bgList);
-        dataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        spinner.setAdapter(dataAdapter);
-        spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-                Toast.makeText(MainActivity.this, spinner.getSelectedItem().toString(), Toast.LENGTH_SHORT).show();
-            }
-
-            @Override
-            public void onNothingSelected(AdapterView<?> adapterView) {
-                Toast.makeText(MainActivity.this, "Hello", Toast.LENGTH_SHORT).show();
-            }
-        });
-    }
 
     public void onclick_EnterPrice(View view) {
         setContentView(R.layout.enter_price);
-        //Enginee();
+        Webservice.GetList_GroupBank(this);
     }
 
     //=========================================================================================
