@@ -67,25 +67,6 @@ public class MainActivity extends AppCompatActivity {
 
 
 
-       try{
-
-           JSONObject json = new JSONObject();
-         json.put("Id", "0");
-         json.put("Price", "55555");
-         json.put("Title", "7777");
-         json.put("InputOutput", "0");
-         json.put("_Group", "1");
-         json.put("DatePersian_String", "1401/12/31");
-
-
-       //  Webservice.Call(Webservice.VarLibrary.Volley, Webservice.MethodHttp.Get,"http://192.168.1.242:1363/api/Bank/GetListGroup",null,this);
-
-
-       }
-       catch (JSONException je)
-       {
-
-       }
         //RequestParams rp = new RequestParams();
         //rp.add("Id", "0");
         //rp.add("Price", "111");
@@ -117,6 +98,13 @@ public class MainActivity extends AppCompatActivity {
     public void onclick_EnterPrice(View view) {
         setContentView(R.layout.enter_price);
         Webservice.GetList_GroupBank(this);
+
+    }
+
+    public void onclick_SendEnterPrice(View view) {
+        setContentView(R.layout.enter_price);
+
+
     }
 
     //=========================================================================================

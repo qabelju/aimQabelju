@@ -67,7 +67,7 @@
         <EditText
             android:layout_width="0dp"
             android:hint="روز"
-
+            android:id="@+id/DayEditText"
             android:layout_weight="33"
             android:layout_height="50dp"
             android:layout_gravity="center"
@@ -89,6 +89,7 @@
             android:textAlignment="center"
             android:textSize="18dp"
             android:inputType="number"
+            android:id="@+id/DayMountText"
             />
 
 
@@ -102,16 +103,38 @@
             android:textAlignment="center"
             android:textSize="18dp"
             android:inputType="number"
+            android:id="@+id/YearEditText"
 
             />
 
 
     </LinearLayout>
 
+
     <TextView
         android:layout_width="match_parent"
         android:layout_height="20dp"
-        android:text="توضیحات"/>
+        android:text="مبلغ"
+
+        />
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_gravity="center"
+        android:textAlignment="center"
+        android:textSize="18dp"
+        android:inputType="number"
+        android:id="@+id/priceEditText"
+        />
+
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="20dp"
+        android:text="توضیحات"
+        android:id="@+id/StatmentEditText"
+        />
 
     <EditText
         android:layout_width="match_parent"
@@ -154,6 +177,7 @@
         android:text="ارسال اطلاعات"
         android:gravity="center"
         android:layout_gravity="center"
+        android:onClick="onclick_SendEnterPrice"
 
         />
 
