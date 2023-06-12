@@ -234,7 +234,7 @@ public class Webservice
 
     }
 
-    public static void SendEnterPrice(Context context,)
+    public static void SendEnterPrice(Context context)
     {
         /////////////////////////////////////////////
         ///////                              ////////
@@ -257,6 +257,11 @@ public class Webservice
             /////////////////////////////////////////////
 
 
+            Activity activity = (Activity) context;
+
+
+
+
             RequestQueue queue = Volley.newRequestQueue(context);
 
             /////////////////////////////////////////////
@@ -268,39 +273,17 @@ public class Webservice
 
             final List<bank_group> listarr = null;
 
-            Response.Listener<org.json.JSONArray> jsonObjectListener = new Response.Listener<org.json.JSONArray>() {
+            Response.Listener<org.json.JSONObject> jsonObjectListener = new Response.Listener<org.json.JSONObject>() {
 
 
                 @Override
-                public void onResponse(org.json.JSONArray  response)
+                public void onResponse(org.json.JSONObject  response)
                 {
                     try
                     {
-                        Log.e("MehrdadQabelju_WebserviceLog", "TTTonResponse = "+response.toString() );
+                        Log.e("MehrdadQabelju_WebserviceLog", "TccxcxTTonResponse = "+response.toString() );
 
 
-
-                        Activity activity = (Activity) context;
-
-
-                        try{
-
-                            JSONObject json = new JSONObject();
-                            json.put("Id", ((Spinner)(activity.findViewById(R.id.planets_spinner))).getSelectedItemId());
-                            json.put("Price",Integer. parseInt(((EditText)(activity.findViewById(R.id.priceEditText))).getText()));
-                            json.put("Title", "7777");
-                            json.put("InputOutput", "0");
-                            json.put("_Group", "1");
-                            json.put("DatePersian_String", "1401/12/31");
-
-                        }
-                        catch (JSONException je)
-                        {
-
-                        }
-
-
-                         =  ((Spinner)(activity.findViewById(R.id.planets_spinner))).getSelectedItemId();
 
 
 
@@ -347,13 +330,40 @@ public class Webservice
             };
 
 
-            String Url = "http://192.168.1.242:1363/api/Bank/GetListGroup";
+            try{
 
-            Log.e("MehrdadQabelju_WebserviceLog", "Vollay Call Get Start  " );
-            com.android.volley.Request<org.json.JSONArray> request = new JsonArrayRequest(Request.Method.GET, Url, null, jsonObjectListener, errorListener);
+                JSONObject json = new JSONObject();
+                json.put("Id", ((Spinner)(activity.findViewById(R.id.planets_spinner))).getSelectedItemId());
+                json.put("Price",Integer. parseInt(String.valueOf(((EditText)(activity.findViewById(R.id.priceEditText))).getText())));
+                json.put("Title",String.valueOf(((EditText)(activity.findViewById(R.id.StatmentEditText))).getText()));
+                json.put("InputOutput", "0");
+                json.put("_Group", ((Spinner)(activity.findViewById(R.id.planets_spinner))).getSelectedItemId());
 
-            Log.e("MehrdadQabelju_WebserviceLog", "Vollay Call Get End  ");
-            queue.add(request);
+                String PersianDateTime= String.valueOf(((EditText)(activity.findViewById(R.id.YearEditText))).getText()) +"/"+
+                        String.valueOf(((EditText)(activity.findViewById(R.id.DayMountText))).getText()) +"/"+
+                        String.valueOf(((EditText)(activity.findViewById(R.id.DayEditText))).getText()) ;
+                json.put("DatePersian_String", PersianDateTime);
+
+                Log.e("MehrdadQabelju_WebserviceLog", "json Send =  = "+json.toString() );
+
+
+                String Url = "http://192.168.1.242:1363/api/Bank/NewDec";
+
+                Log.e("MehrdadQabelju_WebserviceLog", "Vollay Call Get Start  " );
+                com.android.volley.Request<org.json.JSONObject> request = new JsonObjectRequest(Request.Method.POST, Url, json, jsonObjectListener, errorListener);
+
+                Log.e("MehrdadQabelju_WebserviceLog", "Vollay Call Get End  ");
+
+                queue.add(request);
+            }
+            catch (JSONException je)
+            {
+                Log.e("MehrdadQabelju_WebserviceLog", "json Error =  = "+je.getMessage() );
+            }
+
+
+
+
 
 
 

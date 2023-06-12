@@ -102,8 +102,8 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void onclick_SendEnterPrice(View view) {
-        setContentView(R.layout.enter_price);
 
+        Webservice.SendEnterPrice(this);
 
     }
 
