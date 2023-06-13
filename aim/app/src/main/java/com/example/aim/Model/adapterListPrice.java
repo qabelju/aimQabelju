@@ -13,19 +13,22 @@ import com.example.aim.R;
 
 import org.json.JSONArray;
 
-public class adapterPrice  extends RecyclerView.Adapter<adapterPrice.MyViewHolde>
+public class adapterListPrice extends RecyclerView.Adapter<adapterListPrice.MyViewHolde>
 {
 Context context;
     JSONArray  jsonArray;
 
-    public adapterPrice (Context context,JSONArray  jsonArray){
+    public adapterListPrice(Context context, JSONArray  jsonArray){
         this.jsonArray=jsonArray;
-        this.context = context
+        this.context = context;
+
+
+
     }
 
     @NonNull
     @Override
-    public adapterPrice.MyViewHolde onCreateViewHolder(@NonNull ViewGroup parent, int viewType)
+    public adapterListPrice.MyViewHolde onCreateViewHolder(@NonNull ViewGroup parent, int viewType)
     {
         View view = LayoutInflater.from(context).inflate(R.layout.recycleview_api,parent,false);
 
@@ -33,7 +36,7 @@ Context context;
     }
 
     @Override
-    public void onBindViewHolder(@NonNull adapterPrice.MyViewHolde holder, int position)
+    public void onBindViewHolder(@NonNull adapterListPrice.MyViewHolde holder, int position)
     {
 holder.textp.setText(position);
     }

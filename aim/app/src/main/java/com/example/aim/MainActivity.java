@@ -1,7 +1,9 @@
 package com.example.aim;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Context;
 import android.os.Bundle;
 
 import android.util.Log;
@@ -60,11 +62,15 @@ import retrofit2.http.Header;
 
 public class MainActivity extends AppCompatActivity {
 
+
+    RecyclerView recyclerView;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.dashboard);
 
+
+        //setContentView(R.layout.list_price);
 
 
         //RequestParams rp = new RequestParams();
@@ -110,6 +116,13 @@ public class MainActivity extends AppCompatActivity {
     //=========================================================================================
     //|||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
     //=========================================================================================
+
+
+    public void onclick_ReportList(View view)
+    {
+        Webservice.GetListPrice(this);
+        setContentView(R.layout.list_price);
+    }
 
 
 
