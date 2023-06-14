@@ -10,6 +10,7 @@ import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Toast;
 
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.android.volley.Request;
@@ -20,7 +21,8 @@ import com.android.volley.toolbox.JsonArrayRequest;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.aim.ItemList;
-import com.example.aim.Model.adapterListPrice;
+
+import com.example.aim.Model.adapterRecyclerView;
 import com.example.aim.Model.bank_group;
 import com.example.aim.R;
 
@@ -389,13 +391,19 @@ public class Webservice {
                         Log.e("MehrdadQabelju_WebserviceLog", "List = "+jsonArray.toString() );
 
 
-                        RecyclerView spinner = (RecyclerView) (activity.findViewById(R.id.ddddddd));
-
-                        adapterListPrice ddd = new adapterListPrice(context, jsonArray);
-
-                        spinner.setAdapter(ddd);
 
 
+
+
+
+                        RecyclerView recyclerView = (RecyclerView) activity.findViewById(R.id.my_recycler_view);
+                        adapterRecyclerView adapter = new adapterRecyclerView(context,jsonArray);
+                        recyclerView.setHasFixedSize(true);
+                        recyclerView.setLayoutManager(new LinearLayoutManager(context));
+                        recyclerView.setAdapter(adapter);
+
+
+                        Log.e("MehrdadQabelju_WebserviceLog", "end end nnnn = " );
 
                     }
                     catch (Exception ex)
@@ -508,9 +516,9 @@ public class Webservice {
 
             Activity activity = (Activity) context;
 
-            RecyclerView spinner = (RecyclerView) (activity.findViewById(R.id.ddddddd));
+            RecyclerView spinner = (RecyclerView) (activity.findViewById(R.id.my_recycler_view));
 
-            adapterListPrice ddd = new adapterListPrice(context, null);
+            adapterRecyclerView ddd = new adapterRecyclerView(context, null);
 
             spinner.setAdapter(ddd);
 

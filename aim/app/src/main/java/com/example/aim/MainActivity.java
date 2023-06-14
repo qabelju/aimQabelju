@@ -120,8 +120,10 @@ public class MainActivity extends AppCompatActivity {
 
     public void onclick_ReportList(View view)
     {
-        Webservice.GetListPrice(this);
         setContentView(R.layout.list_price);
+
+        Webservice.GetListPrice(this);
+
     }
 
 

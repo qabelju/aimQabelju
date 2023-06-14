@@ -3,20 +3,23 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
 
-    >
-    <RelativeLayout
+    android:orientation="vertical">
+
+    <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        >
+        android:text="helooooo"
+
+        />
+
 
     <androidx.recyclerview.widget.RecyclerView
         android:layout_width = "match_parent"
         android:layout_height = "wrap_content"
-        android:id="@+id/ddddddd"
+        android:scrollbars="vertical"
+        android:id="@+id/my_recycler_view"
+      android:background="#00BCD4"
         />
-
-    </RelativeLayout>
-
 
 
 </LinearLayout>
